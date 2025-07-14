@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SmartTasks</title>
+</head>
+<body>
+<h1>Task Manager</h1>
+
+<form th:action="@{/add}" method="post">
+    <input type="text" name="title" placeholder="Task Title" required/>
+    <input type="date" name="dueDate" required/>
+    <input type="text" name="description" placeholder="Description"/>
+    <button type="submit">Add Task</button>
+</form>
+
+<ul>
+    <li th:each="task : ${tasks}">
+        <span th:text="${task.title}"></span> -
+        <span th:text="${task.dueDate}"></span>
+        <a th:href="@{'/delete/' + ${task.id}}">Delete</a>
+    </li>
+</ul>
+
+</body>
+</html>
